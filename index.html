@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Servio provides modern POS systems, business hardware and customized technology solutions for businesses in Kigali and across Rwanda." />
+    <title>Servio Rwanda | Fast. Easy. Reliable Business Technology</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script>
+      // Applied before React mounts so there's no flash of the wrong theme
+      // on load. Kept in sync with src/theme/ThemeProvider.jsx.
+      (function () {
+        // Default is always light unless the visitor has explicitly chosen
+        // dark before — kept in sync with theme/ThemeProvider.jsx.
+        var dark = localStorage.getItem("servio_theme") === "dark";
+        if (dark) document.documentElement.classList.add("dark");
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

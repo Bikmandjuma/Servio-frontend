@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-bg-rgb: 245 246 248;
+  --c-surface-rgb: 255 255 255;
+  --c-fg-rgb: 18 20 28;
+  --c-muted-rgb: 91 100 114;
+  --c-line-rgb: 228 230 234;
+}
+
+/* Dark theme — same tokens, different values. Toggled by adding/removing
+   `dark` on <html> (see src/theme/ThemeProvider.jsx). Deliberately does NOT
+   touch `ink`: the site's intentionally-always-dark blocks (footer, CTA
+   banners, hero card, admin sidebar, primary buttons) stay the same fixed
+   navy in both themes. Values are space-separated RGB channels (not hex) so
+   Tailwind's opacity modifiers (bg-paper/60, etc.) keep working. */
+.dark {
+  --c-bg-rgb: 11 14 22;
+  --c-surface-rgb: 20 26 38;
+  --c-fg-rgb: 237 239 243;
+  --c-muted-rgb: 151 160 175;
+  --c-line-rgb: 35 42 56;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper text-fg font-sans antialiased transition-colors duration-300;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display text-fg;
+}
+
+::selection {
+  @apply bg-accent/30;
+}
+
+/* Visible keyboard focus everywhere — accessibility floor */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #E5A93D;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Reserve space at the bottom on mobile so content isn't hidden behind the
+   fixed bottom navigation bar. */
+.mobile-nav-spacer {
+  height: calc(72px + env(safe-area-inset-bottom, 0px));
+}
+
+.container-content {
+  @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-10;
+}
+
+/* Shared form field styling used across Contact / Request Demo / Quote */
+.input {
+  @apply w-full rounded-xl border border-line bg-paper/40 px-4 py-2.5 text-sm text-fg placeholder:text-muted/70 outline-none transition-colors focus:border-ink focus:bg-surface;
+}
+
+/* The three-chevron mark from the Servio logo, reused as a small recurring
+   wayfinding glyph (section markers, active nav state, link hovers) instead
+   of a generic arrow or numbered badge. */
+.chevrons {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Any wide content (tables, code, key/value grids) scrolls inside its own
+   container instead of forcing the whole page to scroll sideways on
+   tablet/phone. */
+.table-scroll {
+  @apply overflow-x-auto;
+  -webkit-overflow-scrolling: touch;
+}
